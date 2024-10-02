@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+    body {
+        font-size: 20px;
+        background-color: #2e2e2e; /* Darker background color */
+    }
+
+    form {
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: #333;
+        border-radius: 8px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+        color: #ffffff;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: none;
+        border-radius: 4px;
+        background-color: #555;
+        color: #fff;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #5a67d8;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #434190;
+    }
+</style>
+
+<div>
+    <form method="POST" action="/create-post"> 
+        <label>عنوان</label>
+        <input type="text" name="topic" placeholder="...اینجا بنویس" size="20" style="text-align: right;">
+
+        <label>کپشن</label>
+        <input type="text" name="description" placeholder="...اینجا بنویس" style="text-align: right;">   
+
+        <input type="submit" value="تایید" style="text-align: center; font-size: larger;">
+    </form>
+</div>
+{% endblock body %}

@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+    body{
+        text-align: center;
+        font-size: 20PX;
+    }
+</style>
+    <div>
+        <h3>{{ username }} پست های</h3>
+        <hr>
+        {% if flag %}
+            {% for user_post in user_posts %}
+                <a href="{{ url_for('show_post', post_id=user_post.id) }}">
+                    <div>
+                    <small>@{{user_post.host.username}} {{user_post.created.strftime('%Y-%m-%d')}}</small>
+                    <h4>{{user_post.topic}}</h4>
+                    <h3>{{user_post.description}}</h3>  
+                    <hr>
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <h3>no post yet...</h3>
+        {% endif %}
+    </div>
+{% endblock body %}
+
+{% block users %}
+    <div>
+        <h3>آخرین فعالیت</h3>
+        <hr>
+        {% if flag1 %}
+            <small>@{{user_comment.post.host.username}} {{user_comment.post.created.strftime('%Y-%m-%d')}}</small>
+            <h4>{{user_comment.post.topic}}</h4>
+            <h3>{{user_comment.post.description}}</h3>
+            
+            <small>@{{user_comment.person.username}} commented:</small>
+            <h3>{{user_comment.body}}</h3>
+        {% else %}
+            <h3>no comment yet!</h3>
+        {% endif %}
+    </div>
+{% endblock users %}

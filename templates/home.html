@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+  
+
+{% block body %}
+<style>
+  body{
+    font-size: 20px;
+  }
+</style>
+  <div class="posts-container">
+    <h3>پست های اخیر</h3>
+    <hr>
+    {% for post_ in posts_ %}
+      <a href="{{ url_for('show_post', post_id=post_.id) }}" class="post-link">
+        <div class="post-item">
+          <small>@{{post_.host.username}} {{post_.created.strftime('%Y-%m-%d')}}</small>
+          <h4>{{post_.topic}}</h4>
+          <h3>{{post_.description}}</h3>  
+          <hr>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock body %}
+
+{% block users %}
+  <div class="users-container">
+    <h3>کاربران فعال</h3>
+    <hr>
+    {% for user in users %}
+      <a href="{{ url_for('user_post', username=user.username) }}">@{{user.username}}</a>
+      <hr>
+    {% endfor %}
+  </div>
+{% endblock users %}

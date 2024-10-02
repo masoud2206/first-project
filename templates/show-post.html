@@ -1,0 +1,109 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+    body {
+        background-color: #2e2e2e; /* Dark background color */
+        color: #e0e0e0; /* Light text color */
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        line-height: 1.6;
+    }
+
+    .post-container {
+        background-color: #333;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+    }
+
+    .post-container h4 {
+        color: #5a67d8;
+        font-size: 1.5em;
+    }
+
+    .post-container h3 {
+        font-size: 1.2em;
+        color: #ffffff;
+    }
+
+    .post-container small {
+        color: #a0aec0;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background-color: #444;
+        margin: 20px 0;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        background-color: #555;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #5a67d8;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        align-self:last baseline;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #434190;
+    }
+
+    .comment-container {
+        background-color: #444;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .comment-container h3 {
+        color: #ffffff;
+        font-size: 1.1em;
+    }
+
+    .comment-container small {
+        color: #a0aec0;
+    }
+</style>
+
+<div class="post-container">
+    <small>@{{main_post.host.username}} {{main_post.created.strftime('%Y-%m-%d')}}</small>
+    <h4>{{main_post.topic}}</h4>
+    <h3>{{main_post.description}}</h3>  
+    <hr>
+
+    <!-- Comment Form -->
+    <form method="POST" action="{{ url_for('show_post', post_id=main_post.id) }}"> 
+        <input type="text" name="comment" placeholder="...کامنت بزار" style="text-align: right;">  
+        <input type="submit" value="تایید">
+    </form>
+
+    <!-- Comments Section -->
+    <div>
+        {% for comment in comments %}
+        <div class="comment-container">
+            <small>@{{comment.person.username}} {{comment.created.strftime('%Y-%m-%d')}}</small>
+            <h3>{{comment.body}}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}

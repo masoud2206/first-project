@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            background-color: #1c1c1c; /* Dark background color */
+            color: #e0e0e0; /* Light text color */
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .home-container {
+            display: grid;
+            grid-template-columns: 4fr 1fr; /* Adjusted grid layout */
+            gap: 20px;
+        }
+
+        h3 {
+            color: #5a67d8;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #444;
+            margin: 15px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5a67d8;
+        }
+
+        a:hover {
+            color: #434190;
+        }
+
+        /* Comments Section */
+        .comments-container h4 {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .comments-container h3 {
+            font-size: 1.2em;
+            color: #e0e0e0;
+        }
+
+        .comments-container small {
+            color: #a0aec0;
+        }
+
+        .comments-container div {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .comments-container div:hover {
+            background-color: #3b3b3b;
+        }
+
+        /* Profile Info Section */
+        .profile-info h3 {
+            font-size: 1.5em;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+
+        .profile-info {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .profile-info a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #5a67d8;
+            color: #fff;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-info a:hover {
+            background-color: #434190;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home-container">
+        <!-- Comments Section -->
+        <div class="comments-container">
+            <h3>YOUR COMMENTS</h3>
+            <hr>
+            {% for comment in comments %}
+            <a href="{{ url_for('show_post', post_id=comment.post_id) }}">
+                <div>
+                    <small>@{{comment.post.host.username}} {{comment.post.created.strftime('%Y-%m-%d')}}</small>
+                    <h4>{{comment.post.topic}}</h4>
+                    <h3>{{comment.post.description}}</h3>  
+                    <hr>
+                </div>
+            </a>
+            <div>
+                <small>@{{comment.person.username}} {{comment.created.strftime('%Y-%m-%d')}}</small>
+                <h3>{{comment.body}}</h3>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Profile Info Section -->
+        <div class="profile-info">
+            <h3>{{user.email}}</h3>
+            <hr>
+            <h3>{{user.username}}</h3>
+            <hr>
+            <a href="/profile">Show Posts</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page</title>
+    <style>
+        body {
+            background-color: #1c1c1c; /* Dark background color */
+            color: #e0e0e0; /* Light text color */
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .home-container {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            text-align: right;
+        }
+
+        h3 {
+            color: #5a67d8;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #2a2a2a;
+            margin: 15px 0;
+            
+        }
+
+        a {
+            text-decoration: none;
+            color: #5a67d8;
+            
+        }
+
+        a:hover {
+            color: #434190;
+        }
+
+        /* Left Column (Content from main.html) */
+        .left-column {
+            font-size: 22px;
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .left-column a {
+            display: block;
+            padding: 10px 0;
+            color: #e0e0e0;
+            transition: color 0.3s ease;
+            text-align: center;
+        }
+
+        .left-column a:hover {
+            color: #5a67d8;
+            text-align: center;
+        }
+
+        /* Posts Section in the middle */
+        .posts-container {
+            background-color: #333333fb;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: right;
+        }
+
+        .posts-container h4 {
+            font-size: 1.4em;
+            color: #ffffff;
+            text-align: right;
+        }
+
+        .posts-container h3 {
+            font-size: 1.2em;
+            color: #e0e0e0;
+            text-align: right;
+        }
+
+        .posts-container small {
+            color: #a0aec0;
+        }
+
+        .posts-container div {
+            background-color: #444;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .posts-container div:hover {
+            background-color: #555;
+        }
+
+        /* Right Column (Account Info) */
+        .right-column {
+            font-size: 15px;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .right-column h3 {
+            font-size: 1.5em;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+
+        .right-column hr {
+            border: 0;
+            height: 1px;
+            background-color: #444;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="home-container">
+    <!-- Included from main.html on the left side -->
+    <div class="left-column">
+        {% include 'messages.html' %}
+        <a href="/">خانه</a>
+        <hr>
+        {% if session.is_login %}
+            <a href="/profile">پروفایل</a>
+            <hr>
+            <a href="/log-out">خروج</a>
+            <hr>
+        {% else %}
+            <a href="/login">ورود</a>
+            <hr>
+        {% endif %}
+        <a href="/create-post">پست جدید</a>
+        <hr>
+        <h3>عناوین</h3>
+        {% for post in posts %}
+            <div>
+                <a href="{{ url_for('filter', subject=post.topic) }}">{{ post.topic }}</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Posts Section in the middle -->
+    <div class="posts-container">
+        <h3>پست های شما</h3>
+        <hr>
+        {% for post in posts %}
+        <a href="{{ url_for('show_post', post_id=post.id) }}">
+            <div>
+                <small>@{{post.host.username}} {{post.created.strftime('%Y-%m-%d')}}</small>
+                <h4>{{post.topic}}</h4>
+                <h3>{{post.description}}</h3>  
+                <hr>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Right Column (Account Info) -->
+    <div class="right-column">
+        <h3>{{info.email}}</h3>
+        <hr>
+        <h3>{{info.username}}</h3>
+        <hr>
+        <a href="/profile/comments" style="font-size: 25px;">کامنت های شما</a>
+    </div>
+</div>
+
+</body>
+</html>

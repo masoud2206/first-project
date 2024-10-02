@@ -1,0 +1,309 @@
+/* ------------------------------------ 
+Click on login and Sign Up to change and view the effect 
+--------------------------------------- */
+
+* {
+  margin: 0px auto;
+  padding: 0px;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+main {
+  text-align: center;
+}
+
+.cotn_principal {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  height: 100%;
+  background: #2a2a2ae4; /* Darker background */
+}
+
+.cont_centrar {
+  display: flex;
+  align-self: center;
+  width: 100%;
+}
+
+.cont_login {
+  position: relative;
+  width: 640px;
+}
+
+.cont_back_info {
+  position: relative;
+  float: left;
+  width: 640px;
+  height: 280px;
+  overflow: hidden;
+  background-color: #1c1f3a; /* Dark background */
+  box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.cont_forms {
+  position: absolute;
+  overflow: hidden;
+  top: 0px;
+  left: 0px;
+  width: 320px;
+  height: 280px;
+  background-color: #2a2e47; /* Darker background for forms */
+  transition: all 0.5s;
+}
+
+.cont_forms_active_login {
+  box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+  height: 420px;
+  top: -60px;
+  left: 0px;
+  transition: all 0.5s;
+}
+
+.cont_forms_active_sign_up {
+  box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+  height: 420px;
+  top: -60px;
+  left: 320px;
+  transition: all 0.5s;
+}
+
+.cont_img_back_grey {
+  position: absolute;
+  width: 950px;
+  top: -80px;
+  left: -116px;
+}
+
+.cont_img_back_grey > img {
+  width: 100%;
+  filter: grayscale(100%);
+  opacity: 0.2;
+  animation-name: animar_fondo;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.cont_img_back_ {
+  position: absolute;
+  width: 950px;
+  top: -80px;
+  left: -116px;
+}
+
+.cont_img_back_ > img {
+  width: 100%;
+  opacity: 0.3;
+  animation-name: animar_fondo;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.cont_forms_active_login > .cont_img_back_ {
+  top: -20px;
+  transition: all 0.5s;
+}
+
+.cont_forms_active_sign_up > .cont_img_back_ {
+  top: -20px;
+  left: -435px;
+  transition: all 0.5s;
+}
+
+.cont_info_log_sign_up {
+  position: absolute;
+  width: 640px;
+  height: 280px;
+  top: 0px;
+  z-index: 1;
+}
+
+.col_md_login {
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
+.col_md_login > h2 {
+  font-weight: 400;
+  margin-top: 70px;
+  color: #e0e0e0; /* Lightened text color */
+}
+
+.col_md_login > p {
+  font-weight: 400;
+  margin-top: 15px;
+  width: 80%;
+  color: #a0a0a0; /* Lightened text color */
+}
+
+.btn_login {
+  background-color: #5daeff; /* Blue button color to match darker theme */
+  border: none;
+  padding: 10px;
+  width: 200px;
+  border-radius: 3px;
+  box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.col_md_sign_up {
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
+.cont_ba_opcitiy > h2 {
+  font-weight: 400;
+  color: #e0e0e0; /* Lightened text color */
+}
+
+.cont_ba_opcitiy > p {
+  font-weight: 400;
+  margin-top: 15px;
+  color: #a0a0a0; /* Lightened text color */
+}
+
+.cont_ba_opcitiy {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6); /* Darker background with higher opacity */
+  width: 80%;
+  border-radius: 3px;
+  margin-top: 60px;
+  padding: 15px 0px;
+}
+
+.btn_sign_up {
+  background-color: #f28b82; /* Red button color for sign-up */
+  border: none;
+  padding: 10px;
+  width: 200px;
+  border-radius: 3px;
+  box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.cont_forms_active_sign_up {
+  z-index: 2;
+}
+
+@keyframes animar_fondo {
+  from {
+    transform: scale(1) translate(0px);
+  }
+  to {
+    transform: scale(1.5) translate(50px);
+  }
+}
+
+.cont_form_login {
+  position: absolute;
+  opacity: 0;
+  display: none;
+  width: 320px;
+  transition: all 0.5s;
+}
+
+.cont_forms_active_login {
+  z-index: 2;
+}
+
+.cont_form_sign_up {
+  position: absolute;
+  width: 320px;
+  float: left;
+  opacity: 0;
+  display: none;
+  transition: all 0.5s;
+}
+
+.cont_form_sign_up > input {
+  text-align: left;
+  padding: 15px 5px;
+  margin-left: 10px;
+  margin-top: 20px;
+  width: 260px;
+  border: none;
+  color: #b0b0b0; /* Lighter input text color */
+}
+
+.cont_form_sign_up > h2 {
+  margin-top: 50px;
+  font-weight: 400;
+  color: #e0e0e0; /* Lightened text color */
+}
+
+.cont_form_login > input {
+  padding: 15px 5px;
+  margin-left: 10px;
+  margin-top: 20px;
+  width: 260px;
+  border: none;
+  text-align: left;
+  color: #b0b0b0; /* Lighter input text color */
+}
+
+.cont_form_login > h2 {
+  margin-top: 110px;
+  font-weight: 400;
+  color: #e0e0e0; /* Lightened text color */
+}
+
+.cont_form_login > a,
+.cont_form_sign_up > a {
+  color: #b0b0b0; /* Lighter link color */
+  position: relative;
+  float: left;
+  margin: 10px;
+  margin-left: 30px;
+}
+/* General input styling for both forms */
+form input {
+  text-align: right;
+  padding: 15px 5px;
+  margin-left: 10px;
+  margin-top: 20px;
+  width: 260px;
+  border: none;
+  color: #757575;
+}
+
+/* General heading styling for both forms */
+form h2 {
+  font-weight: 400;
+  color: #ffffff;
+}
+
+/* Specific styles for login form */
+.cont_form_login h2 {
+  margin-top: 110px;
+}
+
+.cont_form_sign_up h2 {
+  margin-top: 50px;
+}
+
+/* Ensuring the forms show and hide correctly */
+.cont_form_login,
+.cont_form_sign_up {
+  position: absolute;
+  width: 320px;
+  opacity: 0;
+  display: none;
+  transition: all 0.5s;
+}
+
+.cont_forms_active_login .cont_form_login,
+.cont_forms_active_sign_up .cont_form_sign_up {
+  opacity: 1;
+  display: block;
+}

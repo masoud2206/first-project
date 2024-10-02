@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<style>
+  body{
+    font-size: 20px;
+  }
+</style>
+  <div>
+    <h3>پست های اخیر</h3>
+    <hr>
+    {% for filtered_post in filtered_posts %}
+    <a href="{{ url_for('show_post', post_id = filtered_post.id)}}">
+        <div>
+          <small>@{{filtered_post.host.username}} {{filtered_post.created.strftime('%Y-%m-%d')}}</small>
+          <h4>{{filtered_post.topic}}</h4>
+          <h3>{{filtered_post.description}}</h3>  
+          <hr>
+        </div>
+    {% endfor %}
+  </div>
+{% endblock body %}
