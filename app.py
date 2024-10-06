@@ -235,10 +235,3 @@ def user_post(username):
 
 if __name__ == "__main__":
         app.run(debug=True)
-
-
-#this is a comment updated
-#another comment
-#third comment of program
-#final comment
-#lets do that
